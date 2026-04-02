@@ -23,27 +23,23 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto product) {
-        ProductResponseDto createdProduct = productService.createProduct(product);
-        return ResponseEntity.ok(createdProduct);
+        return ResponseEntity.ok(productService.createProduct(product));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponseDto> getProductById(@PathVariable UUID id) {
-        ProductResponseDto product = productService.getProductById(id);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
-        List<ProductResponseDto> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponseDto> updateProduct(@PathVariable UUID id,
                                                             @RequestBody ProductRequestDto product) {
-        ProductResponseDto updatedProduct = productService.updateProduct(id, product);
-        return ResponseEntity.ok(updatedProduct);
+        return ResponseEntity.ok(productService.updateProduct(id, product));
     }
 
     @DeleteMapping("/{id}")
@@ -54,14 +50,12 @@ public class ProductController {
 
     @GetMapping("/expiring-before")
     public ResponseEntity<List<ProductResponseDto>> getProductsExpiringBefore(@RequestParam LocalDate date) {
-        List<ProductResponseDto> products = productService.getProductsExpiringBefore(date);
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(productService.getProductsExpiringBefore(date));
     }
 
     @GetMapping("/price-range")
     public ResponseEntity<List<ProductResponseDto>> getProductsByPriceRange(@RequestParam BigDecimal minPrice,
                                                                             @RequestParam BigDecimal maxPrice) {
-        List<ProductResponseDto> products = productService.getProductsByPriceRange(minPrice, maxPrice);
-        return ResponseEntity.ok(products);
+        return ResponseEntity.ok(productService.getProductsByPriceRange(minPrice, maxPrice));
     }
 }
